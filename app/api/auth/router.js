@@ -9,7 +9,7 @@ const auth = require('./authorization');
 swagger.addPost({
   spec: {
     path: "/auth/register",
-    summary: "Registers a new user",
+    summary: "Register a new user",
     method: "POST",
     type: "Register",
     nickname: "register",
@@ -26,7 +26,7 @@ swagger.addPost({
 swagger.addPost({
   spec: {
     path: "/auth/register/client",
-    summary: "Registers a new client user",
+    summary: "Register a new client user",
     method: "POST",
     type: "Register Client",
     nickname: "registerClient",
