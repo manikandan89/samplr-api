@@ -5,7 +5,7 @@ default:
 	npm install
 
 start:
-	forever start process/server-cluster.js 
+	node process/server-cluster
 
 worker:
 	node process/worker-cluster
