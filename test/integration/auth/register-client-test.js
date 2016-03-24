@@ -13,10 +13,10 @@ describe('Integration', () => {
       let auth;
 
       let userData = {
-        email: `int_auth_reg_researcher@test.com`,
-        password: "xxx123",
-        firstName: "Andrew",
-        lastName: "Test",
+        email: `admin@gmail.com`,
+        password: "abc123",
+        firstName: "admin",
+        lastName: "admin",
         type: "RESEARCHER",
         age: 22
       };
@@ -30,10 +30,10 @@ describe('Integration', () => {
       });
 
       let data = {
-        email: `int_auth_reg_client@test.com`,
-        password: "xxx123",
-        firstName: "Andrew",
-        lastName: "Test",
+        email: `client@gmail.com`,
+        password: "abc123",
+        firstName: "client",
+        lastName: "client",
         age: 22
       };
 
