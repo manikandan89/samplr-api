@@ -39,10 +39,10 @@ class ResponseService extends CommonService {
    * @param {Number} value
    * @param {Function} next
    */
-  complete(responseId, value, next) {
+  complete(responseId, values, next) {
     return this.readAndUpdate(responseId, {
       state: RESPONSE_STATE.COMPLETE,
-      value: value
+      values: values
     }, next);
   }
 
@@ -55,7 +55,7 @@ class ResponseService extends CommonService {
    */
   bulkComplete(responses, next) {
     async.map(responses, (response, done) => {
-      this.complete(response.id, response.value, done);
+      this.complete(response.id, response.values, done);
     }, next);
   }
 

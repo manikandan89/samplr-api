@@ -46,10 +46,10 @@ describe('Integration', () => {
       });
 
       let completeData = {
-        value: parseInt(Math.random() * 100)
+        values: [{value: parseInt(Math.random() * 100)}]
       };
 
-      it('should complete a response', done => {
+      it('should complete a response for a single value', done => {
         agent
           .client()
           .put('/response/' + response.id)
@@ -62,13 +62,13 @@ describe('Integration', () => {
             should.not.exist(err);
             let response = result.body;
             should.exist(response);
-            response.value.should.equal(completeData.value);
+            response.values[0].value.should.equal(completeData.values[0].value);
             response.state.should.equal('COMPLETE');
             done();
           });
       });
 
-      it('should not complete a response', done => {
+      it('should not complete a response for a single value', done => {
         agent
           .client()
           .put('/response/' + response.id)
@@ -79,6 +79,22 @@ describe('Integration', () => {
           .expect(401)
           .end(done);
       });
+
+    //    let completeData1 = {
+    //     values: [{value:2}, {value:3}]
+    //   };
+      
+    //  it('should complete a response for multiple values', done => {
+      
+    //   });
+      
+    //   it('should not complete a response for multiple values', done => {
+      
+    //   });
+      
+    //    it('should not complete a response for empty array', done => {
+      
+    //   });
 
     });
   });
