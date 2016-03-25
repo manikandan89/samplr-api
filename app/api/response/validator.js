@@ -6,7 +6,7 @@ class ResponseValidator extends CommonValidator {
 
   validateUpdate(req, res, next) {
 
-    req.checkBody('value').notEmpty().isArray();
+    req.checkBody('values').notEmpty().isArray();
 
     this.validate(req, res, next);
   }
