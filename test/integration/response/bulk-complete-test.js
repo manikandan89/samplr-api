@@ -45,7 +45,7 @@ describe('Integration', () => {
         });
       });
 
-      it('should complete a response', done => {
+      it('should complete a response for single value', done => {
 
         let completeData = {
           responses: [{
@@ -72,7 +72,7 @@ describe('Integration', () => {
           });
       });
 
-      it('should not complete a response', done => {
+      it('should not complete a response for single value', done => {
 
         let completeData = {
           responses: [{
@@ -90,6 +90,41 @@ describe('Integration', () => {
           .send(completeData)
           .expect(401)
           .end(done);
+      });
+      
+      //Test Data
+      
+      it('should complete a response for multiple values', done => {
+          
+        let completeData = {
+          responses: [{
+            id: response.id,
+            values: [{value:2}, {value:3}]
+          }]
+        };
+
+      });
+      
+      it('should not complete a response for multiple values', done => {
+          
+        let completeData = {
+          responses: [{
+            id: response.id,
+            values: [{value:2}, {value:3}]
+          }]
+        };
+
+      });
+      
+      it('should not complete a response for empty array of responses', done => {
+          
+        let completeData = {
+          responses: [{
+            id: response.id,
+            values: []
+          }]
+        };
+
       });
 
     });
