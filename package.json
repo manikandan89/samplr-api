@@ -33,6 +33,7 @@
     "gulp-jshint": "2.0.0",
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
+    "mocha-jenkins-reporter": "0.2.2",
     "mocha": "2.3.4",
     "require-directory": "2.1.1",
     "should": "7.1.1",
