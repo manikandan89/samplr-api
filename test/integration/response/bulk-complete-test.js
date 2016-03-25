@@ -94,38 +94,38 @@ describe('Integration', () => {
       
       //Test Data
       
-      it('should complete a response for multiple values', done => {
+    //   it('should complete a response for multiple values', done => {
           
-        let completeData = {
-          responses: [{
-            id: response.id,
-            values: [{value:2}, {value:3}]
-          }]
-        };
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: [{value:2}, {value:3}]
+    //       }]
+    //     };
 
-      });
+    //   });
       
-      it('should not complete a response for multiple values', done => {
+    //   it('should not complete a response for multiple values', done => {
           
-        let completeData = {
-          responses: [{
-            id: response.id,
-            values: [{value:2}, {value:3}]
-          }]
-        };
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: [{value:2}, {value:3}]
+    //       }]
+    //     };
 
-      });
+    //   });
       
-      it('should not complete a response for empty array of responses', done => {
+    //   it('should not complete a response for empty array of responses', done => {
           
-        let completeData = {
-          responses: [{
-            id: response.id,
-            values: []
-          }]
-        };
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: []
+    //       }]
+    //     };
 
-      });
+    //   });
 
     });
   });

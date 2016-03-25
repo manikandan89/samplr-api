@@ -80,21 +80,21 @@ describe('Integration', () => {
           .end(done);
       });
       
-       let completeData1 = {
-        values: [{value:2}, {value:3}]
-      };
+    //    let completeData1 = {
+    //     values: [{value:2}, {value:3}]
+    //   };
       
-     it('should complete a response for multiple values', done => {
+    //  it('should complete a response for multiple values', done => {
       
-      });
+    //   });
       
-      it('should not complete a response for multiple values', done => {
+    //   it('should not complete a response for multiple values', done => {
       
-      });
+    //   });
       
-       it('should not complete a response for empty array', done => {
+    //    it('should not complete a response for empty array', done => {
       
-      });
+    //   });
 
     });
   });
