@@ -50,7 +50,7 @@ describe('Integration', () => {
         let completeData = {
           responses: [{
             id: response.id,
-            value: parseInt(Math.random() * 100)
+	    values: [{value: parseInt(Math.random() * 100)}]
           }]
         };
 
@@ -66,7 +66,7 @@ describe('Integration', () => {
             should.not.exist(err);
             let responses = result.body;
             should.exist(responses);
-            responses[0].value.should.equal(completeData.responses[0].value);
+            responses[0].values[0].value.should.equal(completeData.responses[0].values[0].value);
             responses[0].state.should.equal('COMPLETE');
             done();
           });
@@ -77,7 +77,7 @@ describe('Integration', () => {
         let completeData = {
           responses: [{
             id: response.id,
-            value: parseInt(Math.random() * 100)
+            values: [{value: parseInt(Math.random() * 100)}]
           }]
         };
 
@@ -93,6 +93,41 @@ describe('Integration', () => {
       });
       
       //Test Data
+      
+    //   it('should complete a response for multiple values', done => {
+          
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: [{value:2}, {value:3}]
+    //       }]
+    //     };
+
+    //   });
+      
+    //   it('should not complete a response for multiple values', done => {
+          
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: [{value:2}, {value:3}]
+    //       }]
+    //     };
+
+    //   });
+      
+    //   it('should not complete a response for empty array of responses', done => {
+          
+    //     let completeData = {
+    //       responses: [{
+    //         id: response.id,
+    //         values: []
+    //       }]
+    //     };
+
+    //   });
+
+            //Test Data
       
     //   it('should complete a response for multiple values', done => {
           

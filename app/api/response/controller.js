@@ -13,9 +13,9 @@ const Response = require('modules/response');
 exports.update = (req, res, next) => {
 
   let responseId = req.params.id;
-  let value = req.body.value;
+  let values = req.body.values;
 
-  Response.complete(responseId, value, (err, response) => {
+  Response.complete(responseId, values, (err, response) => {
     if (err) return next(err);
     res.status(200).json(response);
   });
