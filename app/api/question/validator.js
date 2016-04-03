@@ -7,6 +7,7 @@ class QuestionValidator extends CommonValidator {
   validateCreate(req, res, next) {
 
     req.checkBody('title').notEmpty().isString();
+    req.checkBody('questionType').notEmpty().isString();
     req.checkBody('surveyId').notEmpty().isString();
     req.checkBody('responses').notEmpty().isArray();
 

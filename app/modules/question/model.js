@@ -9,6 +9,7 @@ class QuestionModel extends CommonModel {
       userId: this.type.string().required(),
       surveyId: this.type.string().required(),
       title: this.type.string(),
+      questionType: this.type.string(),
       responses: [{
         value: this.type.number().integer(),
         text: this.type.string()
