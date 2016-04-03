@@ -19,12 +19,14 @@ exports.create = (req, res, next) => {
   let userId = req.userId;
   let surveyId = req.body.surveyId;
   let title = req.body.title;
+  let questionType = req.body.questionType;
   let responses = req.body.responses;
 
   Question.create({
     userId: userId,
     surveyId: surveyId,
     title: title,
+    questionType: questionType,
     responses: responses
   }, (err, question) => {
     if (err) return next(err);

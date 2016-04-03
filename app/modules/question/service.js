@@ -19,6 +19,7 @@ class QuestionService extends CommonService {
     if (!options.userId) return next(new Errors.InvalidArgumentError("QuestionService.create - options.userId is required"));
     if (!options.surveyId) return next(new Errors.InvalidArgumentError("QuestionService.create - options.surveyId is required"));
     if (!options.title) return next(new Errors.InvalidArgumentError("QuestionService.create - options.title is required"));
+    if (!options.questionType) return next(new Errors.InvalidArgumentError("QuestionService.create - options.questionType is required"));
 
     return super.create(options, next);
   }
