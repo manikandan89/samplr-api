@@ -36,7 +36,7 @@ describe('Integration', () => {
         Question.create({
           title: "Hello, World",
           userId: auth.user.id,
-	  questionType: "checkbox";
+	  questionType: "checkbox",
           surveyId: "1234"
         }, (err, _question) => {
           if (err) return done(err);
