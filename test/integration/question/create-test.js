@@ -63,6 +63,7 @@ describe('Integration', () => {
         let questionData = {
           title: "How are you?",
           surveyId: survey.id,
+	  questionType: "checkbox",
           responses: [{
             value: 0,
             text: "Bad"

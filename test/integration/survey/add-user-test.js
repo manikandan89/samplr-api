@@ -79,6 +79,7 @@ describe('Integration', () => {
           title: "How are you?",
           surveyId: survey.id,
           userId: auth.user.id,
+   	  questionType: "checkbox",
           responses: [{
             value: 0,
             text: "Bad"

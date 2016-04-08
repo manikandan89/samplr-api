@@ -86,6 +86,7 @@ describe('Integration', () => {
           title: "CSV_Q0",
           surveyId: survey.id,
           userId: auth.user.id,
+	  questionType: "checkbox",
           responses: [{
             value: 0,
             text: "0"
