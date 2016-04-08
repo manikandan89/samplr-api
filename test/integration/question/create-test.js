@@ -58,12 +58,12 @@ describe('Integration', () => {
         });
       });
 
-      it('should create a question', done => {
+      it('should create a question with checkbox', done => {
 
         let questionData = {
           title: "How are you?",
           surveyId: survey.id,
-	  questionType: "checkbox",
+          questionType: "checkbox",
           responses: [{
             value: 0,
             text: "Bad"
@@ -85,6 +85,7 @@ describe('Integration', () => {
             should.not.exist(err);
             let question = result.body;
             question.title.should.equal(questionData.title);
+            question.questionType.should.equal(questionData.questionType);
             question.responses.length.should.equal(questionData.responses.length);
             question.responses[0].text.should.equal(questionData.responses[0].text);
             question.responses[0].value.should.equal(questionData.responses[0].value);
@@ -93,6 +94,44 @@ describe('Integration', () => {
             done();
           });
       });
+
+      it('should create a question with radiobutton', done => {
+
+        let questionData = {
+          title: "How are you?",
+          surveyId: survey.id,
+          questionType: "radiobutton",
+          responses: [{
+            value: 0,
+            text: "Bad"
+          }, {
+            value: 1,
+            text: "Good"
+          }]
+        };
+
+        agent
+            .client()
+            .post('/question')
+            .query({
+              auth: auth.token
+            })
+            .send(questionData)
+            .expect(201)
+            .end(function(err, result) {
+              should.not.exist(err);
+              let question = result.body;
+              question.title.should.equal(questionData.title);
+              question.questionType.should.equal(questionData.questionType);
+              question.responses.length.should.equal(questionData.responses.length);
+              question.responses[0].text.should.equal(questionData.responses[0].text);
+              question.responses[0].value.should.equal(questionData.responses[0].value);
+              question.responses[1].text.should.equal(questionData.responses[1].text);
+              question.responses[1].value.should.equal(questionData.responses[1].value);
+              done();
+            });
+      });
+
 
       it('should not create a question', done => {
         agent
@@ -104,6 +143,31 @@ describe('Integration', () => {
           })
           .expect(401)
           .end(done);
+      });
+
+      it('should not create a question as questionType is missing', done => {
+
+        let questionData1 = {
+          title: "How are you?",
+          surveyId: survey.id,
+          responses: [{
+            value: 0,
+            text: "Bad"
+          }, {
+            value: 1,
+            text: "Good"
+          }]
+        };
+
+        agent
+            .client()
+            .post('/question')
+            .query({
+              auth: auth.token
+            })
+            .send(questionData1)
+            .expect(400)
+            .end(done);
       });
 
     });
