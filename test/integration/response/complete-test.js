@@ -49,7 +49,7 @@ describe('Integration', () => {
         values: [{value: parseInt(Math.random() * 100)}]
       };
 
-      it('should complete a response for a single value', done => {
+      it('should complete a response', done => {
         agent
           .client()
           .put('/response/' + response.id)
@@ -68,7 +68,7 @@ describe('Integration', () => {
           });
       });
 
-      it('should not complete a response for a single value', done => {
+      it('should not complete a response', done => {
         agent
           .client()
           .put('/response/' + response.id)
@@ -98,7 +98,41 @@ describe('Integration', () => {
 
       // Test multiple values (checkbox)
 
+      let completeData1 = {
+        values: [{value: parseInt(Math.random() * 100)}, {value: parseInt(Math.random() * 100)}]
+      };
 
+      it('should complete multiple values', done => {
+        agent
+            .client()
+            .put('/response/' + response.id)
+            .query({
+              auth: auth.token
+            })
+            .send(completeData1)
+            .expect(200)
+            .end(function(err, result) {
+              should.not.exist(err);
+              let response = result.body;
+              should.exist(response);
+              response.values[0].value.exists;
+              response.values[1].value.exists;
+              response.state.should.equal('COMPLETE');
+              done();
+            });
+      });
+
+      it('should not complete a response for multiple values', done => {
+        agent
+            .client()
+            .put('/response/' + response.id)
+            .query({
+              auth: '1234'
+            })
+            .send(completeData1)
+            .expect(401)
+            .end(done);
+      });
 
     });
   });
