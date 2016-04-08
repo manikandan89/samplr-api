@@ -13,11 +13,20 @@ describe('Integration', () => {
 
       let auth;
 
+      /*      let userData = {
+       email: `int_response_bulk_complete@test.com`,
+       password: "xxx123",
+       firstName: "Andrew",
+       lastName: "Test",
+       type: "CLIENT",
+       age: 22
+       };*/
+
       let userData = {
-        email: `int_response_bulk_complete@test.com`,
-        password: "xxx123",
-        firstName: "Andrew",
-        lastName: "Test",
+        email: `mani@gmail.com`,
+        password: "abc123",
+        firstName: "mani",
+        lastName: "mani",
         type: "CLIENT",
         age: 22
       };
@@ -31,101 +40,113 @@ describe('Integration', () => {
       });
 
       let response;
-
+      let response1;
       before(done => {
         Response.create({
           userId: auth.user.id,
-          surveyId: '1234',
-          questionId: '1234',
+          surveyId: parseInt(Math.random() * 100).toString(),
+          questionId: parseInt(Math.random() * 100).toString(),
           date: new Date()
         }, (err, _response) => {
+          console.log('err from response create::', err);
+          console.log('response from response create::', _response);
           if (err) return done(err);
           response = _response;
           done();
         });
       });
 
-      it('should complete a response for single value', done => {
+      before(done => {
+        Response.create({
+          userId: auth.user.id,
+          surveyId: parseInt(Math.random() * 100).toString(),
+          questionId: parseInt(Math.random() * 100).toString(),
+          date: new Date()
+        }, (err, _response1) => {
+          console.log('err from response1 create::', err);
+          console.log('response from response1 create::', _response1);
+          if (err) return done(err);
+          response1 = _response1;
+          done();
+        });
+      });
+
+      it('should complete a response with multiple values', done => {
 
         let completeData = {
           responses: [{
             id: response.id,
-	    values: [{value: parseInt(Math.random() * 100)}]
+            values: [{value: parseInt(Math.random() * 100)}, {value: parseInt(Math.random() * 100)}]
           }]
         };
 
         agent
-          .client()
-          .put('/user/' + auth.user.id + '/response')
-          .query({
-            auth: auth.token
-          })
-          .send(completeData)
-          .expect(200)
-          .end(function(err, result) {
-            should.not.exist(err);
-            let responses = result.body;
-            should.exist(responses);
-            responses[0].values[0].value.should.equal(completeData.responses[0].values[0].value);
-            responses[0].state.should.equal('COMPLETE');
-            done();
-          });
+            .client()
+            .put('/user/' + auth.user.id + '/response')
+            .query({
+              auth: auth.token
+            })
+            .send(completeData)
+            .expect(200)
+            .end(function(err, result) {
+              console.log('err from put response::', err);
+
+              should.not.exist(err);
+              let responses = result.body;
+              should.exist(responses);
+              console.log('response from put response::', responses);
+              //responses[0].value.should.equal(completeData.responses[0].value);
+              responses[0].state.should.equal('COMPLETE');
+              done();
+            });
       });
 
-      it('should not complete a response for single value', done => {
+            it('should complete a response with single value', done => {
 
-        let completeData = {
-          responses: [{
-            id: response.id,
-            values: [{value: parseInt(Math.random() * 100)}]
-          }]
-        };
+       let completeData = {
+       responses: [{
+       id: response1.id,
+       value: [{value: parseInt(Math.random() * 100)}]
+       }]
+       };
 
-        agent
-          .client()
-          .put('/user/' + auth.user.id + '/response')
-          .query({
-            auth: '1234'
-          })
-          .send(completeData)
-          .expect(401)
-          .end(done);
-      });
+       agent
+       .client()
+       .put('/user/' + auth.user.id + '/response')
+       .query({
+       auth: auth.token
+       })
+       .send(completeData)
+       .expect(200)
+       .end(function(err, result) {
+       should.not.exist(err);
+       let responses = result.body;
+       should.exist(responses);
+         console.log('response from put response1::', responses);
+       responses[0].state.should.equal('COMPLETE');
+       done();
+       });
+       });
 
-            //Test Data
-      
-    //   it('should complete a response for multiple values', done => {
-          
-    //     let completeData = {
-    //       responses: [{
-    //         id: response.id,
-    //         values: [{value:2}, {value:3}]
-    //       }]
-    //     };
+           it('should not complete a response', done => {
 
-    //   });
-      
-    //   it('should not complete a response for multiple values', done => {
-          
-    //     let completeData = {
-    //       responses: [{
-    //         id: response.id,
-    //         values: [{value:2}, {value:3}]
-    //       }]
-    //     };
+       let completeData = {
+       responses: [{
+       id: response.id,
+       value: parseInt(Math.random() * 100)
+       }]
+       };
 
-    //   });
-      
-    //   it('should not complete a response for empty array of responses', done => {
-          
-    //     let completeData = {
-    //       responses: [{
-    //         id: response.id,
-    //         values: []
-    //       }]
-    //     };
-
-    //   });
+       agent
+       .client()
+       .put('/user/' + auth.user.id + '/response')
+       .query({
+       auth: '1234'
+       })
+       .send(completeData)
+       .expect(401)
+       .end(done);
+       });
 
     });
   });

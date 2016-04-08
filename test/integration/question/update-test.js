@@ -36,7 +36,7 @@ describe('Integration', () => {
         Question.create({
           title: "Hello, World",
           userId: auth.user.id,
-	  questionType: "checkbox",
+          questionType: "checkbox",
           surveyId: "1234"
         }, (err, _question) => {
           if (err) return done(err);
@@ -46,7 +46,8 @@ describe('Integration', () => {
       });
 
       let questionData = {
-        title: "Hello, Question"
+        title: "Hello, Question",
+        questionType: "radiobutton"
       };
 
       it('should update a question', done => {
@@ -63,6 +64,7 @@ describe('Integration', () => {
             let question = result.body;
             should.exist(question);
             question.title.should.equal(questionData.title);
+            question.questionType.should.equal(questionData.questionType);
             done();
           });
       });

@@ -46,9 +46,11 @@ exports.update = (req, res, next) => {
 
   let questionId = req.params.id;
   let title = req.body.title;
+  let questionType = req.body.questionType;
 
   Question.readAndUpdate(questionId, {
-    title: title
+    title: title,
+    questionType: questionType
   }, (err, question) => {
     if (err) return next(err);
     res.status(200).json(question);
