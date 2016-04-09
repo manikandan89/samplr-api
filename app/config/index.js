@@ -102,7 +102,7 @@ const TEST = _.extend({}, DEVELOPMENT, {
     level: 'debug'
   },
   rethinkdb: {
-    host: process.env.RETHINKDB_PORT_29015_TCP_ADDR || 'ec2-54-191-230-187.us-west-2.compute.amazonaws.com'
+    host: process.env.RETHINKDB_PORT_29015_TCP_ADDR || 'ec2-54-200-237-87.us-west-2.compute.amazonaws.com'
   }
 });
 
