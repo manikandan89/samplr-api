@@ -34,7 +34,6 @@
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
     "mocha-jenkins-reporter": "0.2.2",
-    "jenkins-mocha": "latest",
     "mocha": "2.3.4",
     "require-directory": "2.1.1",
     "should": "7.1.1",
@@ -44,8 +43,7 @@
   "scripts": {
     "postinstall": "make post-install",
     "start": "make start",
-    //"test": "make test-all",
-    "test": "jenkins-mocha test/*",
+    "test": "make test-all",
     "coverage": "make test-coverage",
     "view-coverage": "open coverage/lcov-report/index.html"
   }
