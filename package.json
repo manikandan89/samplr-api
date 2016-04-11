@@ -43,7 +43,7 @@
   "scripts": {
     "postinstall": "make post-install",
     "start": "make start",
-     "test": "make test-all --recursive -R xunit > report.xml",
+     "test": "make test-all -R xunit > report.xml",
     "coverage": "make test-coverage",
     "view-coverage": "open coverage/lcov-report/index.html"
   }
