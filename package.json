@@ -43,7 +43,7 @@
   "scripts": {
     "postinstall": "make post-install",
     "start": "make start",
-    "test": "./node_modules/.bin/mocha --recursive -R xunit / > report.xml",
+    "test": "./node_modules/.bin/mocha -R xunit test/ > report.xml",
     "coverage": "make test-coverage",
     "view-coverage": "open coverage/lcov-report/index.html"
   }
