@@ -37,15 +37,13 @@
     "mocha": "2.3.4",
     "require-directory": "2.1.1",
     "should": "7.1.1",
-    "supertest": "1.1.0",
-    "jenkins-mocha": "latest"
+    "supertest": "1.1.0"
   },
 
   "scripts": {
     "postinstall": "make post-install",
     "start": "make start",
-    "test": "jenkins-mocha test/*",
-    "devtest": "jenkins-mocha --cobertura test/*",
+    "test": "make test-all", 
     "coverage": "make test-coverage",
     "view-coverage": "open coverage/lcov-report/index.html"
   }
