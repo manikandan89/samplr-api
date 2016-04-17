@@ -20,6 +20,13 @@ class QuestionValidator extends CommonValidator {
 
     this.validate(req, res, next);
   }
+
+  validateLink(req, res, next) {
+    req.checkBody('branchQuestionId').notEmpty().isString();
+    req.checkBody('expected').notEmpty().isString();
+
+    this.validate(req, res, next);
+  }
 }
 
 module.exports = new QuestionValidator();

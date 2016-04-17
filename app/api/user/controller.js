@@ -57,11 +57,13 @@ exports.listResponses = (req, res, next) => {
     .listByUserId(userId)
     .getJoin({
       question: true
-    })
+    }).orderBy("created")
     .run((err, resposnes) => {
       if (err) return next(err);
+      console.log("resposnes::", resposnes);
       res.status(200).json(resposnes);
     });
+
 };
 
 /**
