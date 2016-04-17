@@ -15,6 +15,7 @@ class ResponseModel extends CommonModel {
       questionId: this.type.string().required(),
       surveyId: this.type.string().required(),
       state: this.type.string().enum(_.values(RESPONSE_STATE)).default(RESPONSE_STATE.PENDING),
+      //value: this.type.number().integer()
       values: [{
         value: this.type.number().integer()
       }]

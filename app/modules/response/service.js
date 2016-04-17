@@ -4,6 +4,7 @@ const _ = require('underscore');
 const async = require('async');
 const Errors = require('app/errors');
 const CommonService = require('modules/common').Service;
+const ResponseValue= require('modules/responsevalue');
 
 // Constants
 const RESPONSE_STATE = require('./state');
@@ -58,6 +59,46 @@ class ResponseService extends CommonService {
       this.complete(response.id, response.values, done);
     }, next);
   }
+
+
+/*  /!**
+   * Complete a response
+   *
+   * @method complete
+   * @param {String} responseId
+   * @param {Number} value
+   * @param {Function} next
+   *!/
+  complete(responseId, next) {
+    return this.readAndUpdate(responseId, {
+      state: RESPONSE_STATE.COMPLETE
+    }, next);
+  }*/
+
+
+
+/*  /!**
+   * Bulk complete responses
+   *
+   * @method bulkComplete
+   * @param {[Object]} responses
+   * @param {Function} next
+   *!/
+  bulkComplete(responses, next) {
+    console.log("responses::", responses);
+    console.log("next::", next);
+    async.map(responses, (response, done) => {
+      this.complete(response.id, done);
+     /!* _.each(response.responseValues, responseValue => {
+        console.log("done:::", done);
+        ResponseValue.create({responseId:response.id, value:responseValue}, done);
+      });*!/
+      async.map(response.responseValues, (responseValue, done) => {
+        ResponseValue.create({responseId:response.id, value:responseValue}, done);
+      })
+
+    }, next);
+  }*/
 
   /**
    * List responses by survey id
@@ -124,7 +165,7 @@ class ResponseService extends CommonService {
       .listIndex("userId", userId)
       .filter({
         state: state
-      });
+      })
 
     return this.rQuery(r, next);
   }

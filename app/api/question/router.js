@@ -6,6 +6,7 @@ const controller = require('./controller');
 const validator = require('./validator');
 const auth = require('./authorization');
 const surveyAuth = require('../survey/authorization');
+const logger = require('logger');
 
 swagger.addPost({
   spec: {
@@ -39,6 +40,24 @@ swagger.addPut({
       done => auth.requiresQuestionOwner(req, res, done),
       done => validator.validateUpdate(req, res, done),
       done => controller.update(req, res, done)
+    ], next);
+  }
+});
+
+swagger.addPut({
+  spec: {
+    path: "/question/{id}/link",
+    summary: "Update branch for a question",
+    method: "PUT",
+    type: "Update",
+    nickname: "update-link",
+    produces: ["application/json"]
+  },
+  action: (req, res, next) => {
+    async.series([
+      done => auth.requiresQuestionOwner(req, res, done),
+      done => validator.validateLink(req, res, done),
+      done => controller.linkBranch(req, res, done)
     ], next);
   }
 });

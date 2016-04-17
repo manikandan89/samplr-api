@@ -9,7 +9,12 @@ class QuestionModel extends CommonModel {
       userId: this.type.string().required(),
       surveyId: this.type.string().required(),
       title: this.type.string(),
-      questionType: this.type.string(),
+      questionType: this.type.string().required(),
+      isBranchQuestion: this.type.boolean(),
+      branches: [{
+        branchId: this.type.string()
+      }],
+      expectedValue: this.type.number().integer(),
       responses: [{
         value: this.type.number().integer(),
         text: this.type.string()
