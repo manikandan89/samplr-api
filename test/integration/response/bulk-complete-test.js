@@ -48,8 +48,6 @@ describe('Integration', () => {
           questionId: parseInt(Math.random() * 100).toString(),
           date: new Date()
         }, (err, _response) => {
-          console.log('err from response create::', err);
-          console.log('response from response create::', _response);
           if (err) return done(err);
           response = _response;
           done();
@@ -63,8 +61,6 @@ describe('Integration', () => {
           questionId: parseInt(Math.random() * 100).toString(),
           date: new Date()
         }, (err, _response1) => {
-          console.log('err from response1 create::', err);
-          console.log('response from response1 create::', _response1);
           if (err) return done(err);
           response1 = _response1;
           done();
@@ -94,8 +90,6 @@ describe('Integration', () => {
               should.not.exist(err);
               let responses = result.body;
               should.exist(responses);
-              console.log('response from put response::', responses);
-              //responses[0].value.should.equal(completeData.responses[0].value);
               responses[0].state.should.equal('COMPLETE');
               done();
             });
@@ -157,7 +151,6 @@ describe('Integration', () => {
        should.not.exist(err);
        let responses = result.body;
        should.exist(responses);
-         console.log('response from put response1::', responses);
        responses[0].state.should.equal('COMPLETE');
        done();
        });

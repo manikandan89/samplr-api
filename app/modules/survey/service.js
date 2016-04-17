@@ -126,7 +126,6 @@ function _generateResponses(survey, user, start, end, questions) {
 
   do {
     _.each(questions, question => {
-      console.log("create-date:", question.created);
       _.each(survey.schedule, schedule => {
         responses.push({
           created: question.created,
