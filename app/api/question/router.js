@@ -6,7 +6,6 @@ const controller = require('./controller');
 const validator = require('./validator');
 const auth = require('./authorization');
 const surveyAuth = require('../survey/authorization');
-const logger = require('logger');
 
 swagger.addPost({
   spec: {
