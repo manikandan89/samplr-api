@@ -4,7 +4,6 @@ const _ = require('underscore');
 const async = require('async');
 const Errors = require('app/errors');
 const CommonService = require('modules/common').Service;
-const ResponseValue= require('modules/responsevalue');
 
 // Constants
 const RESPONSE_STATE = require('./state');
@@ -165,7 +164,7 @@ class ResponseService extends CommonService {
       .listIndex("userId", userId)
       .filter({
         state: state
-      })
+      });
 
     return this.rQuery(r, next);
   }

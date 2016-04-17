@@ -23,7 +23,7 @@ exports.create = (req, res, next) => {
   let responses = req.body.responses;
   let isBranchQuestion = req.body.isBranchQuestion;
 
-  if(isBranchQuestion == null){
+  if(isBranchQuestion === null){
     isBranchQuestion = false;
   }
 
@@ -75,7 +75,7 @@ exports.update = (req, res, next) => {
  */
 exports.linkBranch = (req, res, next) => {
 
-  if (req.body.branchQuestionId == null || req.body.expected == null) {
+  if (req.body.branchQuestionId === null || req.body.expected === null) {
     console.log(req.body.branchQuestionId);
     console.log(req.body.expected);
 
@@ -98,7 +98,7 @@ exports.linkBranch = (req, res, next) => {
       console.log("response in link::", response);
       currentQuestionObj = response;
       branches = currentQuestionObj.branches;
-      if (branches == undefined || branches == null) {
+      if (branches === undefined || branches === null) {
         branches = [];
       }
       branches.push({ branchId: branchId });
